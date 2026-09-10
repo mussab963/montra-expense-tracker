@@ -3048,3 +3048,604 @@ html[data-theme="light"] .wisdom-panel {
     font-size: 11px !important;
   }
 }
+
+/* =========================================================
+   Light mode readability fix - dark text on light surfaces
+   ========================================================= */
+html[data-theme="light"] {
+  --text: #111815;
+  --muted: #55625c;
+  --muted-2: #2f3d37;
+}
+
+html[data-theme="light"] body,
+html[data-theme="light"] .main-shell,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .summary-card,
+html[data-theme="light"] .starter-card,
+html[data-theme="light"] .quick-add-panel,
+html[data-theme="light"] .guide-steps article,
+html[data-theme="light"] .modal {
+  color: #111815;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] .topbar h1,
+html[data-theme="light"] .welcome-row h2,
+html[data-theme="light"] .panel-head h3,
+html[data-theme="light"] .starter-card h3,
+html[data-theme="light"] .welcome-modal h2,
+html[data-theme="light"] .guide-steps h3,
+html[data-theme="light"] .wisdom-panel h3,
+html[data-theme="light"] .bill-card h3,
+html[data-theme="light"] .goal-card h3,
+html[data-theme="light"] .budget-card h3 {
+  color: #111815;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] label,
+html[data-theme="light"] .card-label,
+html[data-theme="light"] .card-label-row > span:first-child,
+html[data-theme="light"] .card-meta,
+html[data-theme="light"] .transaction-name small,
+html[data-theme="light"] .transaction-row > span,
+html[data-theme="light"] .forecast-copy,
+html[data-theme="light"] .guide-intro,
+html[data-theme="light"] .guide-steps p,
+html[data-theme="light"] .guide-principle p,
+html[data-theme="light"] .welcome-modal > p,
+html[data-theme="light"] .privacy-note,
+html[data-theme="light"] .fx-example,
+html[data-theme="light"] .form-help,
+html[data-theme="light"] .income-plan-body span,
+html[data-theme="light"] .upcoming-row small,
+html[data-theme="light"] .bill-card small,
+html[data-theme="light"] .profile-copy span {
+  color: #55625c;
+}
+
+html[data-theme="light"] .summary-card > strong,
+html[data-theme="light"] .hero-number,
+html[data-theme="light"] .transaction-name b,
+html[data-theme="light"] .transaction-row strong,
+html[data-theme="light"] .tx-dual-amount b,
+html[data-theme="light"] .budget-card-foot strong,
+html[data-theme="light"] .goal-card-foot strong,
+html[data-theme="light"] .income-plan-body strong,
+html[data-theme="light"] .income-plan-body > span b,
+html[data-theme="light"] .fx-live-row strong,
+html[data-theme="light"] .upcoming-row b,
+html[data-theme="light"] .upcoming-row strong {
+  color: #111815;
+}
+
+html[data-theme="light"] .search-box,
+html[data-theme="light"] .filter-btn,
+html[data-theme="light"] .budget-summary-strip > div,
+html[data-theme="light"] .budget-card,
+html[data-theme="light"] .goal-card,
+html[data-theme="light"] .goal-hero,
+html[data-theme="light"] .quick-chip,
+html[data-theme="light"] .insight-item,
+html[data-theme="light"] .starter-check {
+  background: #fff;
+  color: #111815;
+  border-color: rgba(5, 66, 57, 0.13);
+}
+
+html[data-theme="light"] .search-box input,
+html[data-theme="light"] .modal input,
+html[data-theme="light"] .modal select,
+html[data-theme="light"] .fx-input-row input {
+  color: #111815;
+}
+
+html[data-theme="light"] .transaction-table td {
+  color: #425049;
+  border-top-color: rgba(5, 66, 57, 0.1);
+}
+html[data-theme="light"] .transaction-table td:first-child {
+  color: #111815;
+}
+html[data-theme="light"] .transaction-table th {
+  color: #59665f;
+}
+
+/* Keep deliberate light text only where the background is dark */
+html[data-theme="light"] .primary-btn,
+html[data-theme="light"] .brand-mark {
+  color: #edebe0;
+}
+
+/* =========================================================
+   Montra v8 - Burgundy Night + refined Light Mode
+   Final theme overrides
+   ========================================================= */
+
+/* ---------- DARK MODE: luxury burgundy ---------- */
+html:not([data-theme="light"]) {
+  --bg: #14090e;
+  --surface: #1c0d13;
+  --surface-2: #241018;
+  --surface-3: #30141f;
+  --line: rgba(185, 167, 121, 0.18);
+  --text: #f2eee8;
+  --muted: #ad9fa4;
+  --muted-2: #d1c6c3;
+  --green: #7a2946;
+  --green-2: #5d1e35;
+  --amber: #b9a779;
+  --cyan: #a65872;
+  --purple: #b9a779;
+  --red: #d56a78;
+  --shadow: 0 26px 90px rgba(12, 4, 7, 0.48);
+}
+
+html:not([data-theme="light"]) body {
+  background:
+    radial-gradient(
+      circle at 83% -10%,
+      rgba(122, 41, 70, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 16% 105%,
+      rgba(185, 167, 121, 0.06),
+      transparent 30%
+    ),
+    var(--bg);
+}
+
+html:not([data-theme="light"]) .ambient-one {
+  background: #7a2946;
+  opacity: 0.14;
+}
+html:not([data-theme="light"]) .ambient-two {
+  background: #3b111e;
+  opacity: 0.17;
+}
+html:not([data-theme="light"]) .sidebar {
+  background: rgba(20, 9, 14, 0.95);
+  border-color: var(--line);
+}
+html:not([data-theme="light"]) .topbar {
+  background: rgba(20, 9, 14, 0.91);
+  border-color: var(--line);
+}
+html:not([data-theme="light"]) .brand-mark {
+  background: linear-gradient(145deg, #c5b27e, #9d8958);
+  color: #260f14;
+  box-shadow: 0 10px 34px rgba(185, 167, 121, 0.16);
+}
+html:not([data-theme="light"]) .nav-item {
+  color: #b7a9ae;
+}
+html:not([data-theme="light"]) .nav-item:hover {
+  background: rgba(122, 41, 70, 0.16);
+  color: #f2eee8;
+}
+html:not([data-theme="light"]) .nav-item.active {
+  background: linear-gradient(
+    90deg,
+    rgba(122, 41, 70, 0.3),
+    rgba(122, 41, 70, 0.07)
+  );
+  color: #e9d8df;
+  box-shadow: inset 0 0 0 1px rgba(185, 167, 121, 0.12);
+}
+html:not([data-theme="light"]) .avatar {
+  background: rgba(122, 41, 70, 0.18);
+  border-color: rgba(185, 167, 121, 0.18);
+  color: #c9b681;
+}
+html:not([data-theme="light"]) .language-switch,
+html:not([data-theme="light"]) .icon-btn,
+html:not([data-theme="light"]) .secondary-btn,
+html:not([data-theme="light"]) .status-chip {
+  background: #211018;
+  border-color: var(--line);
+}
+html:not([data-theme="light"]) .language-pill.active {
+  background: rgba(122, 41, 70, 0.25);
+  color: #dbc9cf;
+}
+html:not([data-theme="light"]) .icon-btn:hover {
+  border-color: rgba(185, 167, 121, 0.35);
+  color: #c9b681;
+}
+html:not([data-theme="light"]) .primary-btn {
+  background: linear-gradient(135deg, #7a2946, #652039);
+  color: #fff8f2;
+  box-shadow: 0 14px 34px rgba(73, 18, 39, 0.28);
+}
+html:not([data-theme="light"]) .primary-btn:hover {
+  filter: brightness(1.08);
+}
+html:not([data-theme="light"]) .secondary-btn {
+  color: #eadfe2;
+}
+html:not([data-theme="light"]) .secondary-btn:hover {
+  background: #2b131d;
+  border-color: rgba(185, 167, 121, 0.26);
+}
+html:not([data-theme="light"]) .panel,
+html:not([data-theme="light"]) .summary-card {
+  background: linear-gradient(
+    145deg,
+    rgba(31, 14, 21, 0.98),
+    rgba(23, 10, 15, 0.98)
+  );
+  border-color: var(--line);
+}
+html:not([data-theme="light"]) .summary-card.balance-card {
+  background:
+    radial-gradient(
+      circle at 95% 0,
+      rgba(185, 167, 121, 0.11),
+      transparent 42%
+    ),
+    linear-gradient(145deg, #2a111b, #190b11);
+  border-color: rgba(185, 167, 121, 0.22);
+}
+html:not([data-theme="light"]) .starter-card {
+  background:
+    radial-gradient(
+      circle at 92% 10%,
+      rgba(185, 167, 121, 0.08),
+      transparent 34%
+    ),
+    linear-gradient(135deg, #2a111b, #1b0c12);
+  border-color: rgba(185, 167, 121, 0.18);
+}
+html:not([data-theme="light"]) .starter-icon,
+html:not([data-theme="light"]) .guide-number,
+html:not([data-theme="light"]) .starter-check i {
+  background: rgba(122, 41, 70, 0.2);
+  color: #c9b681;
+}
+html:not([data-theme="light"]) .starter-check.done i {
+  background: #b9a779;
+  color: #260f14;
+}
+html:not([data-theme="light"]) .income-icon {
+  background: rgba(122, 41, 70, 0.18);
+  color: #d690aa;
+}
+html:not([data-theme="light"]) .save-icon {
+  background: rgba(185, 167, 121, 0.12);
+  color: #c9b681;
+}
+html:not([data-theme="light"]) .positive {
+  color: #d690aa !important;
+}
+html:not([data-theme="light"]) .live-dot i {
+  background: #b9a779;
+  box-shadow: 0 0 0 4px rgba(185, 167, 121, 0.1);
+}
+html:not([data-theme="light"]) .chart-bar.income {
+  background: linear-gradient(#a65872, #7a2946);
+}
+html:not([data-theme="light"]) .budget-ring {
+  background: conic-gradient(#7a2946 0deg, #332129 0deg);
+}
+html:not([data-theme="light"]) .budget-ring:before {
+  background: #1a0c12;
+}
+html:not([data-theme="light"]) .budget-message {
+  background: #211018;
+  color: #b8aeb0;
+}
+html:not([data-theme="light"]) .fx-live-row {
+  background: linear-gradient(
+    135deg,
+    rgba(122, 41, 70, 0.18),
+    rgba(38, 15, 20, 0.68)
+  );
+  border-color: rgba(185, 167, 121, 0.18);
+}
+html:not([data-theme="light"]) .quick-add-panel,
+html:not([data-theme="light"]) .quick-chip,
+html:not([data-theme="light"]) .guide-steps article,
+html:not([data-theme="light"]) .insight-item,
+html:not([data-theme="light"]) .starter-check {
+  background: #211018;
+  border-color: var(--line);
+}
+html:not([data-theme="light"]) .wisdom-panel {
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(185, 167, 121, 0.08),
+      transparent 35%
+    ),
+    linear-gradient(145deg, #211018, #180b10);
+}
+html:not([data-theme="light"]) .modal {
+  background: #1b0c12;
+  border-color: rgba(185, 167, 121, 0.18);
+}
+html:not([data-theme="light"]) .modal input,
+html:not([data-theme="light"]) .modal select,
+html:not([data-theme="light"]) .fx-input-row input {
+  background: #241018;
+  border-color: rgba(185, 167, 121, 0.16);
+  color: #f2eee8;
+}
+html:not([data-theme="light"]) .type-toggle button.active {
+  background: rgba(122, 41, 70, 0.24);
+  color: #e6d1d9;
+}
+html:not([data-theme="light"]) .money-equivalent,
+html:not([data-theme="light"]) .equivalent-cell,
+html:not([data-theme="light"]) .tx-dual-amount small {
+  color: #c9b681 !important;
+}
+html:not([data-theme="light"]) .welcome-orb {
+  color: #c9b681;
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(185, 167, 121, 0.18),
+    rgba(122, 41, 70, 0.1) 55%,
+    transparent 72%
+  );
+  border-color: rgba(185, 167, 121, 0.18);
+}
+
+/* ---------- LIGHT MODE: warm ivory + burgundy ---------- */
+html[data-theme="light"] {
+  --bg: #f4f1ea;
+  --surface: #ffffff;
+  --surface-2: #faf8f4;
+  --surface-3: #f1ece6;
+  --line: rgba(69, 42, 51, 0.13);
+  --text: #1f171a;
+  --muted: #6f6267;
+  --muted-2: #493d41;
+  --green: #6f213d;
+  --green-2: #8c3653;
+  --amber: #8d7748;
+  --cyan: #8c3653;
+  --purple: #8d7748;
+  --red: #b94c5d;
+  --shadow: 0 24px 70px rgba(53, 35, 41, 0.1);
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(
+      circle at 82% -12%,
+      rgba(111, 33, 61, 0.055),
+      transparent 33%
+    ),
+    linear-gradient(180deg, #faf8f3 0%, #f4f1ea 100%);
+  color: #1f171a;
+}
+html[data-theme="light"] .ambient-one {
+  background: #8c3653;
+  opacity: 0.05;
+}
+html[data-theme="light"] .ambient-two {
+  background: #b9a779;
+  opacity: 0.045;
+}
+html[data-theme="light"] .sidebar {
+  background: rgba(250, 248, 243, 0.96);
+  border-color: rgba(69, 42, 51, 0.12);
+}
+html[data-theme="light"] .topbar {
+  background: rgba(250, 248, 243, 0.93);
+  border-color: rgba(69, 42, 51, 0.12);
+}
+html[data-theme="light"] .brand-mark {
+  background: linear-gradient(145deg, #6f213d, #8c3653);
+  color: #fffaf6;
+}
+html[data-theme="light"] .nav-item {
+  color: #6d6065;
+}
+html[data-theme="light"] .nav-item:hover {
+  background: rgba(111, 33, 61, 0.07);
+  color: #261a1f;
+}
+html[data-theme="light"] .nav-item.active {
+  background: linear-gradient(
+    90deg,
+    rgba(111, 33, 61, 0.11),
+    rgba(111, 33, 61, 0.025)
+  );
+  color: #6f213d;
+  box-shadow: inset 0 0 0 1px rgba(111, 33, 61, 0.05);
+}
+html[data-theme="light"] .avatar {
+  background: #f6edf0;
+  border-color: #ead9df;
+  color: #6f213d;
+}
+html[data-theme="light"] .language-switch,
+html[data-theme="light"] .icon-btn,
+html[data-theme="light"] .secondary-btn,
+html[data-theme="light"] .status-chip {
+  background: #fff;
+  border-color: rgba(69, 42, 51, 0.13);
+  color: #3d3035;
+}
+html[data-theme="light"] .language-pill {
+  color: #75686d;
+}
+html[data-theme="light"] .language-pill.active {
+  background: #f5e9ed;
+  color: #6f213d;
+}
+html[data-theme="light"] .icon-btn:hover {
+  border-color: rgba(111, 33, 61, 0.25);
+  color: #6f213d;
+}
+html[data-theme="light"] .primary-btn {
+  background: linear-gradient(135deg, #6f213d, #84304d);
+  color: #fffaf7;
+  box-shadow: 0 12px 28px rgba(111, 33, 61, 0.14);
+}
+html[data-theme="light"] .secondary-btn:hover {
+  background: #f9f2f4;
+  border-color: rgba(111, 33, 61, 0.22);
+}
+html[data-theme="light"] .panel,
+html[data-theme="light"] .summary-card,
+html[data-theme="light"] .quick-add-panel,
+html[data-theme="light"] .guide-steps article,
+html[data-theme="light"] .insight-item,
+html[data-theme="light"] .starter-check {
+  background: #fff;
+  border-color: rgba(69, 42, 51, 0.11);
+  color: #1f171a;
+}
+html[data-theme="light"] .summary-card.balance-card {
+  background:
+    radial-gradient(
+      circle at 95% 0,
+      rgba(185, 167, 121, 0.16),
+      transparent 42%
+    ),
+    #fff;
+  border-color: rgba(111, 33, 61, 0.13);
+}
+html[data-theme="light"] .starter-card {
+  background:
+    radial-gradient(
+      circle at 92% 10%,
+      rgba(111, 33, 61, 0.055),
+      transparent 34%
+    ),
+    #fff;
+  border-color: rgba(111, 33, 61, 0.12);
+}
+html[data-theme="light"] .welcome-row h2,
+html[data-theme="light"] .topbar h1,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] .summary-card > strong,
+html[data-theme="light"] .hero-number,
+html[data-theme="light"] .transaction-name b,
+html[data-theme="light"] .transaction-row strong,
+html[data-theme="light"] .tx-dual-amount b,
+html[data-theme="light"] .income-plan-body strong,
+html[data-theme="light"] .income-plan-body > span b,
+html[data-theme="light"] .fx-live-row strong {
+  color: #1f171a;
+}
+html[data-theme="light"] p,
+html[data-theme="light"] label,
+html[data-theme="light"] .card-label,
+html[data-theme="light"] .card-label-row > span:first-child,
+html[data-theme="light"] .card-meta,
+html[data-theme="light"] .transaction-name small,
+html[data-theme="light"] .transaction-row > span,
+html[data-theme="light"] .forecast-copy,
+html[data-theme="light"] .guide-intro,
+html[data-theme="light"] .guide-steps p,
+html[data-theme="light"] .guide-principle p,
+html[data-theme="light"] .welcome-modal > p,
+html[data-theme="light"] .privacy-note,
+html[data-theme="light"] .fx-example,
+html[data-theme="light"] .form-help,
+html[data-theme="light"] .profile-copy span {
+  color: #6f6267;
+}
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .panel-kicker,
+html[data-theme="light"] .modal-kicker,
+html[data-theme="light"] .text-btn,
+html[data-theme="light"] .guide-action {
+  color: #6f213d;
+}
+html[data-theme="light"] .positive {
+  color: #6f213d !important;
+}
+html[data-theme="light"] .income-icon {
+  background: #f7eaee;
+  color: #8c3653;
+}
+html[data-theme="light"] .save-icon {
+  background: #f4efe2;
+  color: #8d7748;
+}
+html[data-theme="light"] .live-dot i {
+  background: #6f213d;
+  box-shadow: 0 0 0 4px rgba(111, 33, 61, 0.07);
+}
+html[data-theme="light"] .chart-bar.income {
+  background: linear-gradient(#a45872, #6f213d);
+}
+html[data-theme="light"] .budget-ring {
+  background: conic-gradient(#6f213d 0deg, #ece5e7 0deg);
+}
+html[data-theme="light"] .budget-ring:before {
+  background: #fff;
+}
+html[data-theme="light"] .budget-message {
+  background: #faf6f7;
+  color: #6f6267;
+}
+html[data-theme="light"] .fx-live-row {
+  background: linear-gradient(
+    135deg,
+    rgba(111, 33, 61, 0.055),
+    rgba(185, 167, 121, 0.07)
+  );
+  border-color: rgba(111, 33, 61, 0.1);
+}
+html[data-theme="light"] .money-equivalent,
+html[data-theme="light"] .equivalent-cell,
+html[data-theme="light"] .tx-dual-amount small {
+  color: #806c40 !important;
+}
+html[data-theme="light"] .wisdom-panel {
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(185, 167, 121, 0.12),
+      transparent 35%
+    ),
+    #fff;
+}
+html[data-theme="light"] .modal {
+  background: #fff;
+  border-color: rgba(69, 42, 51, 0.12);
+  color: #1f171a;
+}
+html[data-theme="light"] .modal input,
+html[data-theme="light"] .modal select,
+html[data-theme="light"] .fx-input-row input,
+html[data-theme="light"] .search-box input {
+  background: #fbfaf7;
+  border-color: rgba(69, 42, 51, 0.13);
+  color: #1f171a;
+}
+html[data-theme="light"] .close-btn {
+  background: #f8f4f5;
+  color: #6f6267;
+}
+html[data-theme="light"] .type-toggle button.active {
+  background: #f5e9ed;
+  color: #6f213d;
+}
+html[data-theme="light"] .transaction-table td {
+  color: #51464a;
+  border-top-color: rgba(69, 42, 51, 0.09);
+}
+html[data-theme="light"] .transaction-table td:first-child {
+  color: #1f171a;
+}
+html[data-theme="light"] .transaction-table th {
+  color: #766a6e;
+}
