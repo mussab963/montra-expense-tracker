@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0e11" />
+  <meta name="description"
+    content="Montra — تطبيق شخصي ثنائي اللغة لتتبع الدخل والمصاريف والعملات والميزانيات والأهداف." />
+  <title>Montra — إدارة أموالك بوضوح</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="#" aria-label="Montra"><span class="brand-mark">M</span><span
+            class="brand-word">Montra</span></a>
+        <nav class="side-nav" id="sideNav">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span
+              data-i18n="overview">نظرة عامة</span></button>
+          <button class="nav-item" data-view="transactions"><span class="nav-icon">↕</span><span
+              data-i18n="transactions">الحركات</span></button>
+          <button class="nav-item" data-view="commitments"><span class="nav-icon">◷</span><span
+              data-i18n="commitments">الالتزامات</span></button>
+          <button class="nav-item" data-view="budgets"><span class="nav-icon">◔</span><span
+              data-i18n="budgets">الميزانيات</span></button>
+          <button class="nav-item" data-view="goals"><span class="nav-icon">◎</span><span
+              data-i18n="goals">الأهداف</span></button>
+          <button class="nav-item" data-view="analytics"><span class="nav-icon">⌁</span><span
+              data-i18n="analytics">التحليلات</span></button>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="openGuide"><span class="nav-icon">?</span><span data-i18n="usageGuide">دليل
+            الاستخدام</span></button><button class="nav-item" id="openSettings"><span class="nav-icon">⚙</span><span
+            data-i18n="settings">الإعدادات</span></button>
+        <div class="profile-card">
+          <div class="avatar" id="avatarInitials">M</div>
+          <div class="profile-copy"><strong id="profileName">مستخدم Montra</strong><span
+              data-i18n="localProfile">بياناتك محفوظة محلياً</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Menu">☰</button>
+          <div><span class="top-kicker" id="dateLabel"></span>
+            <h1 id="viewTitle" data-i18n="overviewTitle">نظرة مالية عامة</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="language-switch" id="languageSwitch" aria-label="Switch language"><span class="language-pill"
+              data-lang="en">EN</span><span class="language-pill active" data-lang="ar">ع</span></button>
+          <button class="icon-btn theme-toggle" id="themeToggle" aria-label="تبديل المظهر"
+            title="تبديل المظهر">☾</button><button class="icon-btn" id="quickSettings" aria-label="Settings">⚙</button>
+          <button class="primary-btn" id="addTransactionTop"><span>＋</span><span data-i18n="addTransaction">إضافة
+              حركة</span></button>
+        </div>
+      </header>
+
+      <section class="view active" id="view-overview">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow" data-i18n="welcomeBack">أهلاً بعودتك</p>
+            <h2><span data-i18n="hello">مرحباً</span>، <span id="welcomeName">صديقي</span>.</h2>
+            <p data-i18n="welcomeText">خلينا نعرف وين عم تروح مصاريك بدون تعقيد.</p>
+          </div>
+          <button class="secondary-btn" id="editIncomeBtn"><span>↗</span><span data-i18n="manageIncome">الدخل
+              المنتظم</span></button>
+        </div>
+
+        <article class="starter-card onboarding-progress" id="starterCard">
+          <div class="starter-copy">
+            <div class="starter-icon">✦</div>
+            <div><span class="panel-kicker" data-i18n="yourFirstSteps">خطواتك الأولى</span>
+              <h3 data-i18n="starterTitle">خلّي Montra يفهم نمطك المالي.</h3>
+              <p data-i18n="starterText">ثلاث خطوات بسيطة تكفي حتى تبدأ التحليلات والنصائح تصير مفيدة إلك.</p>
+            </div>
+          </div>
+          <div class="starter-checks">
+            <button class="starter-check" id="starterIncome"><i id="starterIncomeState">1</i><span
+                data-i18n="guideIncomeShort">أضف دخلك</span></button>
+            <button class="starter-check" id="starterExpense"><i id="starterExpenseState">2</i><span
+                data-i18n="guideExpenseShort">سجّل أول مصروف</span></button>
+            <button class="starter-check" id="starterGuide"><i>?</i><span data-i18n="openGuideShort">افتح
+                الدليل</span></button>
+          </div>
+        </article>
+
+        <div class="fx-income-grid">
+          <article class="panel fx-card">
+            <div class="panel-head compact-head">
+              <div><span class="panel-kicker" data-i18n="exchangeRate">سعر الصرف</span>
+                <h3>USD ↔ SYP</h3>
+              </div><span class="status-chip" id="fxStatus">—</span>
+            </div>
+            <div class="fx-live-row">
+              <div><strong id="fxRateLive">—</strong><small id="fxMeta">—</small><a class="fx-attribution"
+                  id="fxAttribution" href="https://www.exchangerate-api.com" target="_blank" rel="noopener" hidden>Rates
+                  By Exchange Rate API</a></div><button class="icon-btn fx-refresh" id="refreshFxBtn"
+                aria-label="Refresh exchange rate" title="Refresh">↻</button>
+            </div>
+            <div class="fx-example" id="fxExample">يتم تحديث السعر تلقائياً من مصدر خارجي موثوق.</div>
+          </article>
+          <article class="panel income-plan-card">
+            <div class="panel-head compact-head">
+              <div><span class="panel-kicker" data-i18n="regularIncome">الدخل المنتظم</span>
+                <h3 id="incomePlanTitle">—</h3>
+              </div><button class="text-btn" id="incomePlanEdit" data-i18n="edit">تعديل</button>
+            </div>
+            <div class="income-plan-body"><strong id="incomePlanOriginal">—</strong><span
+                id="incomePlanEquivalent">—</span></div>
+          </article>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card balance-card">
+            <div class="card-label-row"><span data-i18n="availableBalance">المتبقي من دخلك</span><span
+                class="live-dot"><i></i><span data-i18n="live">مباشر</span></span></div><strong class="hero-number"
+              id="balanceValue">—</strong>
+            <div class="card-meta"><span data-i18n="incomeMinusExpenses">الدخل المتوقع بعد خصم المصاريف</span><span
+                id="balanceTrend">—</span></div>
+          </article>
+          <article class="summary-card">
+            <div class="card-icon income-icon">↗</div><span class="card-label" data-i18n="expectedIncome">الدخل الشهري
+              المتوقع</span><strong id="incomeValue">—</strong>
+            <div class="card-meta"><span data-i18n="regularPlusExtra">منتظم + دخل إضافي</span><span class="positive"
+                id="incomeExtra">—</span></div>
+          </article>
+          <article class="summary-card">
+            <div class="card-icon expense-icon">↘</div><span class="card-label" data-i18n="spentThisMonth">مصروف هذا
+              الشهر</span><strong id="expenseValue">—</strong>
+            <div class="card-meta"><span data-i18n="spentThisWeek">هذا الأسبوع</span><span
+                id="weekExpenseValue">—</span></div>
+          </article>
+          <article class="summary-card">
+            <div class="card-icon save-icon">✦</div><span class="card-label" data-i18n="safeDailySpend">صرف يومي
+              آمن</span><strong id="safeDailyValue">—</strong>
+            <div class="card-meta"><span data-i18n="untilMonthEnd">حتى نهاية الشهر</span><span
+                id="daysLeftValue">—</span></div>
+          </article>
+        </div>
+
+        <div class="quick-add-panel panel" id="quickAddPanel">
+          <div><span class="panel-kicker" data-i18n="quickAdd">إضافة سريعة</span>
+            <h3 data-i18n="repeatExpenses">كرر مصروف متكرر بضغطة</h3>
+          </div>
+          <div class="quick-add-list" id="quickAddList"></div>
+        </div>
+
+        <div class="overview-grid">
+          <article class="panel cashflow-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="cashFlow">التدفق المالي</span>
+                <h3 data-i18n="monthActivity">حركة هذا الشهر</h3>
+              </div>
+              <div class="legend"><span><i class="income-dot"></i><span data-i18n="income">دخل</span></span><span><i
+                    class="expense-dot"></i><span data-i18n="expenses">مصاريف</span></span></div>
+            </div>
+            <div class="cashflow-chart" id="cashflowChart"></div>
+          </article>
+          <article class="panel health-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="monthForecast">توقع نهاية الشهر</span>
+                <h3 data-i18n="ifYouContinue">إذا كملت بنفس المعدل</h3>
+              </div>
+            </div>
+            <div class="forecast-number" id="forecastValue">—</div>
+            <div class="forecast-copy" id="forecastCopy">—</div>
+            <div class="forecast-meter"><i id="forecastMeter"></i></div>
+          </article>
+        </div>
+
+        <div class="overview-grid lower-grid">
+          <article class="panel transactions-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="recentActivity">آخر النشاطات</span>
+                <h3 data-i18n="latestTransactions">أحدث الحركات</h3>
+              </div><button class="text-btn" data-go="transactions" data-i18n="viewAll">عرض الكل</button>
+            </div>
+            <div class="compact-transactions" id="recentTransactions"></div>
+          </article>
+          <article class="panel category-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="spendingBreakdown">توزيع المصاريف</span>
+                <h3 data-i18n="topCategories">أعلى التصنيفات</h3>
+              </div>
+            </div>
+            <div class="category-content">
+              <div class="category-donut" id="categoryDonut">
+                <div><strong id="categoryTotal">—</strong><span data-i18n="spent">المصروف</span></div>
+              </div>
+              <div class="category-legend" id="categoryLegend"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="overview-grid lower-grid wisdom-grid">
+          <article class="panel wisdom-panel">
+            <div class="wisdom-mark">“</div>
+            <div><span class="panel-kicker" data-i18n="moneyIdea">فكرة مالية لليوم</span>
+              <h3 id="wisdomText">—</h3>
+              <p id="wisdomAuthor">—</p><a id="wisdomSource" href="#" target="_blank" rel="noopener"
+                data-i18n="source">المصدر</a>
+            </div>
+          </article>
+          <article class="panel upcoming-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="upcomingBills">التزامات قادمة</span>
+                <h3 data-i18n="dontForget">حتى ما تنسى دفعة</h3>
+              </div><button class="text-btn" data-go="commitments" data-i18n="manage">إدارة</button>
+            </div>
+            <div id="upcomingBillsList"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-transactions">
+        <div class="page-head">
+          <div>
+            <p data-i18n="transactionsIntro">سجّل كل عملية شراء أو دخل حتى تشوف الصورة الحقيقية لمصروفك.</p>
+          </div>
+          <div class="page-actions"><button class="secondary-btn" id="exportCsvBtn" data-i18n="exportCsv">تصدير
+              CSV</button><button class="primary-btn" id="addTransactionPage">＋ <span data-i18n="addTransaction">إضافة
+                حركة</span></button></div>
+        </div>
+        <div class="panel transaction-manager">
+          <div class="toolbar">
+            <div class="search-box"><span>⌕</span><input id="transactionSearch" type="search"
+                data-i18n-placeholder="searchTransactions" placeholder="ابحث في الحركات..." /></div>
+            <div class="filter-group" id="transactionFilters"><button class="filter-btn active" data-filter="all"
+                data-i18n="all">الكل</button><button class="filter-btn" data-filter="expense"
+                data-i18n="expenses">مصاريف</button><button class="filter-btn" data-filter="income"
+                data-i18n="income">دخل</button></div>
+          </div>
+          <div class="transaction-table-wrap">
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th data-i18n="description">الوصف</th>
+                  <th data-i18n="category">التصنيف</th>
+                  <th data-i18n="date">التاريخ</th>
+                  <th data-i18n="type">النوع</th>
+                  <th data-i18n="originalAmount">المبلغ الأصلي</th>
+                  <th data-i18n="equivalentAmount">المعادِل</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="transactionTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-commitments">
+        <div class="page-head">
+          <div>
+            <p data-i18n="commitmentsIntro">سجّل الإيجار والإنترنت والاشتراكات وأي دفعة بتتكرر كل شهر.</p>
+          </div><button class="primary-btn" id="addBillBtn">＋ <span data-i18n="addCommitment">إضافة
+              التزام</span></button>
+        </div>
+        <div class="budget-summary-strip">
+          <div><span data-i18n="monthlyCommitments">التزامات الشهر</span><strong id="monthlyCommitmentsValue">—</strong>
+          </div>
+          <div><span data-i18n="dueSoon">مستحق خلال 7 أيام</span><strong id="dueSoonValue">0</strong></div>
+          <div><span data-i18n="paidThisMonth">مدفوع هذا الشهر</span><strong id="paidBillsValue">0</strong></div>
+        </div>
+        <div class="bill-grid" id="billGrid"></div>
+      </section>
+
+      <section class="view" id="view-budgets">
+        <div class="page-head">
+          <div>
+            <p data-i18n="budgetIntro">الميزانية اختيارية. استخدمها فقط لما يصير عندك حد واضح بدك تلتزم فيه.</p>
+          </div><button class="primary-btn" id="addBudgetBtn">＋ <span data-i18n="addBudget">إضافة ميزانية
+              تصنيف</span></button>
+        </div>
+        <div class="budget-summary-strip">
+          <div><span data-i18n="totalBudget">إجمالي الميزانيات</span><strong id="budgetPageTotal">—</strong></div>
+          <div><span data-i18n="totalSpent">إجمالي المصروف</span><strong id="budgetPageSpent">—</strong></div>
+          <div><span data-i18n="budgetLeft">المتبقي</span><strong id="budgetPageLeft">—</strong></div>
+        </div>
+        <div class="budget-cards" id="budgetCards"></div>
+      </section>
+
+      <section class="view" id="view-goals">
+        <div class="page-head">
+          <div>
+            <p data-i18n="goalsIntro">هدف واضح أحسن من ادخار عشوائي. سمّي الهدف وتابع تقدمه.</p>
+          </div><button class="primary-btn" id="addGoalBtn">＋ <span data-i18n="addGoal">إضافة هدف ادخار</span></button>
+        </div>
+        <div class="goal-hero panel">
+          <div><span class="panel-kicker" data-i18n="goalProgress">تقدم الأهداف</span>
+            <h3 data-i18n="savingWithPurpose">ادخار لهدف واضح</h3>
+            <p data-i18n="goalHeroText">أضف مبلغاً للهدف كلما ادخرت فعلياً، وMontra يتابع النسبة معك.</p>
+          </div>
+          <div class="goal-hero-stat"><span data-i18n="totalSavedGoals">المدخر للأهداف</span><strong
+              id="goalSavedTotal">—</strong><small id="goalTargetTotal">—</small></div>
+        </div>
+        <div class="goal-grid" id="goalGrid"></div>
+      </section>
+
+      <section class="view" id="view-analytics">
+        <div class="page-head">
+          <div>
+            <p data-i18n="analyticsIntro">مؤشرات بسيطة بتجاوبك: عم تصرف أكتر؟ على شو؟ وهل المعدل عم يتحسن؟</p>
+          </div>
+        </div>
+        <div class="analytics-kpis">
+          <div class="panel"><span data-i18n="avgDailySpend">متوسط الصرف اليومي</span><strong
+              id="avgDailySpend">—</strong><small data-i18n="currentMonth">الشهر الحالي</small></div>
+          <div class="panel"><span data-i18n="largestExpense">أكبر مصروف</span><strong
+              id="largestExpense">—</strong><small id="largestExpenseLabel">—</small></div>
+          <div class="panel"><span data-i18n="topSpendCategory">أعلى تصنيف بالصرف</span><strong
+              id="topCategoryName">—</strong><small id="topCategoryAmount">—</small></div>
+          <div class="panel"><span data-i18n="weekVsLast">هذا الأسبوع مقابل الماضي</span><strong
+              id="weekComparison">—</strong><small id="weekComparisonLabel">—</small></div>
+        </div>
+        <div class="overview-grid analytics-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="dailySpending">الصرف اليومي</span>
+                <h3 data-i18n="spendingTrend">اتجاه المصروف</h3>
+              </div>
+            </div>
+            <div class="line-chart" id="spendingLineChart"></div>
+          </article>
+          <article class="panel insight-panel">
+            <div class="panel-head">
+              <div><span class="panel-kicker" data-i18n="smartInsights">ملاحظات ذكية</span>
+                <h3 data-i18n="whatNumbersSay">ماذا تقول أرقامك</h3>
+              </div>
+            </div>
+            <div class="insight-list" id="insightList"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop locked-modal" id="welcomeModal" aria-hidden="true">
+    <div class="modal welcome-modal">
+      <div class="welcome-brand"><span class="brand-mark">M</span><span>Montra</span></div>
+      <div class="welcome-orb">✦</div>
+      <span class="modal-kicker" data-i18n="welcomeToMontra">أهلاً في Montra</span>
+      <h2 data-i18n="welcomeFirstTitle">خلينا نبدأ باسمك فقط.</h2>
+      <p data-i18n="welcomeFirstText">ما رح نطلب منك ميزانية ولا أرقام ما بتعرفها. سجّل اسمك وادخل، وبعدها Montra بيرشدك
+        خطوة بخطوة.</p>
+      <form id="welcomeForm">
+        <label><span data-i18n="yourName">اسمك</span><input id="welcomeNameInput" type="text" maxlength="40" required
+            autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="اكتب اسمك"></label>
+        <button class="primary-btn welcome-submit" type="submit"><span data-i18n="startMontra">ابدأ مع
+            Montra</span><span>←</span></button>
+      </form>
+      <small class="privacy-note" data-i18n="welcomePrivacy">اسمك وبياناتك المالية تبقى محفوظة محلياً على جهازك.</small>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="guideModal" aria-hidden="true">
+    <div class="modal guide-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="usageGuide">دليل الاستخدام</span>
+          <h2 data-i18n="guideTitle">أفضل طريقة تبدأ فيها مع Montra</h2>
+        </div><button class="close-btn" data-close="guideModal">×</button>
+      </div>
+      <p class="guide-intro" data-i18n="guideIntro">ما تحتاج ترتب حياتك المالية قبل استخدام التطبيق. بالعكس: سجّل الواقع
+        كما هو، وMontra يحوله لصورة واضحة تساعدك تاخد قرارات أحسن.</p>
+      <div class="guide-steps">
+        <article><span class="guide-number">1</span>
+          <div>
+            <h3 data-i18n="guideIncomeTitle">أدخل دخلك المنتظم</h3>
+            <p data-i18n="guideIncomeText">إذا راتبك أسبوعي أو شهري سجّله بعملته الأصلية. Montra يعرض معادله تلقائياً
+              بالدولار أو الليرة حسب سعر الصرف الحالي.</p><button class="guide-action" id="guideStartIncome"
+              data-i18n="guideIncomeAction">إضافة الدخل الآن ←</button>
+          </div>
+        </article>
+        <article><span class="guide-number">2</span>
+          <div>
+            <h3 data-i18n="guideExpenseTitle">سجّل المصروف وقت ما يصير</h3>
+            <p data-i18n="guideExpenseText">كل مرة تشتري شي، سجّل المبلغ والتصنيف. ما يهم إذا دفعت USD أو SYP؛ المعادل
+              بالعملة الثانية يظهر تلقائياً.</p><button class="guide-action" id="guideStartExpense"
+              data-i18n="guideExpenseAction">تسجيل أول مصروف ←</button>
+          </div>
+        </article>
+        <article><span class="guide-number">3</span>
+          <div>
+            <h3 data-i18n="guideBillsTitle">أضف التزاماتك الثابتة</h3>
+            <p data-i18n="guideBillsText">الإيجار، الإنترنت والاشتراكات الشهرية لازم Montra يعرفها حتى يحسب لك الصرف
+              اليومي الآمن بشكل أدق.</p>
+          </div>
+        </article>
+        <article><span class="guide-number">4</span>
+          <div>
+            <h3 data-i18n="guideInsightsTitle">راقب بدل ما تخمّن</h3>
+            <p data-i18n="guideInsightsText">بعد عدة أيام راقب أين يذهب أكبر جزء من دخلك، مقارنة الأسبوع، وتوقع نهاية
+              الشهر. وقتها فقط حط ميزانية للتصنيفات اللي فعلاً تحتاج ضبط.</p>
+          </div>
+        </article>
+      </div>
+      <div class="guide-principle"><span>✦</span>
+        <p data-i18n="guidePrinciple">أفضل استخدام لـ Montra: سجّل بصدق، راجع أرقامك مرة أو مرتين بالأسبوع، وخلي
+          الميزانية نتيجة لبياناتك — مو رقم عشوائي من أول يوم.</p>
+      </div>
+      <div class="modal-actions guide-footer"><button type="button" class="secondary-btn" data-close="guideModal"
+          data-i18n="closeGuide">فهمت، خليني أبدأ</button></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="transactionModal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="newMovement">حركة جديدة</span>
+          <h2 data-i18n="addTransaction">إضافة حركة</h2>
+        </div><button class="close-btn" data-close="transactionModal">×</button>
+      </div>
+      <form id="transactionForm">
+        <div class="type-toggle"><button type="button" class="active" data-type="expense"
+            data-i18n="expense">مصروف</button><button type="button" data-type="income" data-i18n="income">دخل</button>
+        </div><input id="transactionType" type="hidden" value="expense"><label><span
+            data-i18n="description">الوصف</span><input id="transactionTitleInput" type="text" required maxlength="60"
+            data-i18n-placeholder="expensePlaceholder" placeholder="مثلاً: قهوة، بنزين، سوبرماركت"></label>
+        <div class="form-grid two-col"><label><span data-i18n="amount">المبلغ</span><input id="transactionAmount"
+              type="number" min="0.01" step="0.01" required placeholder="0"></label><label><span
+              data-i18n="currency">العملة</span><select id="transactionCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div>
+        <div class="live-conversion-card" id="transactionConversion">—</div>
+        <div class="form-grid two-col"><label><span data-i18n="category">التصنيف</span><select
+              id="transactionCategory"></select></label><label><span data-i18n="date">التاريخ</span><input
+              id="transactionDate" type="date" required></label></div><label><span data-i18n="notesOptional">ملاحظة
+            (اختياري)</span><input id="transactionNote" type="text" maxlength="100"
+            data-i18n-placeholder="notesPlaceholder" placeholder="أي تفصيل يساعدك تتذكر العملية"></label>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="transactionModal"
+            data-i18n="cancel">إلغاء</button><button type="submit" class="primary-btn" data-i18n="saveTransaction">حفظ
+            الحركة</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="incomeModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="regularIncome">الدخل المنتظم</span>
+          <h2 data-i18n="incomeQuestion">كيف تقبض دخلك؟</h2>
+        </div><button class="close-btn" data-close="incomeModal">×</button>
+      </div>
+      <form id="incomeForm">
+        <div class="form-grid two-col"><label><span data-i18n="incomeAmount">مبلغ الدخل</span><input id="incomeInput"
+              type="number" min="0" step="0.01" required></label><label><span data-i18n="currency">العملة</span><select
+              id="incomeCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div>
+        <div class="live-conversion-card" id="incomeLiveConversion">—</div><label><span
+            data-i18n="incomeFrequency">تكرار الدخل</span><select id="incomeFrequency">
+            <option value="monthly" data-i18n="monthly">شهري</option>
+            <option value="weekly" data-i18n="weekly">أسبوعي</option>
+          </select></label>
+        <p class="form-help" id="incomeEquivalentHelp"></p>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="incomeModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit" data-i18n="saveChanges">حفظ
+            التغييرات</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="budgetModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="monthlyBudget">ميزانية شهرية</span>
+          <h2 data-i18n="updateBudget">حددها فقط إذا بدك</h2>
+        </div><button class="close-btn" data-close="budgetModal">×</button>
+      </div>
+      <form id="budgetForm">
+        <div class="form-grid two-col"><label><span data-i18n="budgetLimit">الحد</span><input id="budgetInput"
+              type="number" min="0" step="0.01"></label><label><span data-i18n="currency">العملة</span><select
+              id="budgetCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="budgetModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit"
+            data-i18n="saveChanges">حفظ</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="categoryBudgetModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="categoryBudget">ميزانية تصنيف</span>
+          <h2 data-i18n="setCategoryBudget">حدد سقفاً لتصنيف واحد</h2>
+        </div><button class="close-btn" data-close="categoryBudgetModal">×</button>
+      </div>
+      <form id="categoryBudgetForm"><label><span data-i18n="category">التصنيف</span><select
+            id="categoryBudgetCategory"></select></label>
+        <div class="form-grid two-col"><label><span data-i18n="limit">الحد</span><input id="categoryBudgetAmount"
+              type="number" min="1" step="0.01" required></label><label><span data-i18n="currency">العملة</span><select
+              id="categoryBudgetCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="categoryBudgetModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit" data-i18n="saveBudget">حفظ
+            الميزانية</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="goalModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="savingsGoal">هدف ادخار</span>
+          <h2 data-i18n="createGoal">إنشاء هدف</h2>
+        </div><button class="close-btn" data-close="goalModal">×</button>
+      </div>
+      <form id="goalForm"><label><span data-i18n="goalName">اسم الهدف</span><input id="goalNameInput" type="text"
+            maxlength="40" required placeholder="لابتوب جديد"></label>
+        <div class="form-grid two-col"><label><span data-i18n="targetAmount">المبلغ المستهدف</span><input
+              id="goalTargetInput" type="number" min="1" step="0.01" required></label><label><span
+              data-i18n="currency">العملة</span><select id="goalCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div><label><span data-i18n="savedSoFar">المدخر حتى الآن</span><input id="goalSavedInput"
+            type="number" min="0" step="0.01" value="0"></label><label><span data-i18n="targetDate">التاريخ
+            المستهدف</span><input id="goalDateInput" type="date"></label>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="goalModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit" data-i18n="createGoal">إنشاء
+            الهدف</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="contributeModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="addSavings">إضافة ادخار</span>
+          <h2 id="contributeGoalTitle">هدف</h2>
+        </div><button class="close-btn" data-close="contributeModal">×</button>
+      </div>
+      <form id="contributeForm"><input id="contributeGoalId" type="hidden"><label><span data-i18n="amountToAdd">المبلغ
+            المراد إضافته</span><input id="contributeAmount" type="number" min="0.01" step="0.01" required></label>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="contributeModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit"
+            data-i18n="addSavings">إضافة</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="billModal" aria-hidden="true">
+    <div class="modal small-modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="monthlyCommitment">التزام شهري</span>
+          <h2 data-i18n="addCommitment">إضافة التزام</h2>
+        </div><button class="close-btn" data-close="billModal">×</button>
+      </div>
+      <form id="billForm"><label><span data-i18n="description">الوصف</span><input id="billName" type="text"
+            maxlength="50" required placeholder="الإنترنت"></label>
+        <div class="form-grid two-col"><label><span data-i18n="amount">المبلغ</span><input id="billAmount" type="number"
+              min="0.01" step="0.01" required></label><label><span data-i18n="currency">العملة</span><select
+              id="billCurrency">
+              <option value="SYP">SYP — ل.س</option>
+              <option value="USD">USD — $</option>
+            </select></label></div>
+        <div class="form-grid two-col"><label><span data-i18n="dueDay">يوم الاستحقاق من الشهر</span><input id="billDay"
+              type="number" min="1" max="31" required placeholder="15"></label><label><span
+              data-i18n="category">التصنيف</span><select id="billCategory"></select></label></div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="billModal"
+            data-i18n="cancel">إلغاء</button><button class="primary-btn" type="submit" data-i18n="save">حفظ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <div><span class="modal-kicker" data-i18n="preferences">التفضيلات</span>
+          <h2 data-i18n="settings">الإعدادات</h2>
+        </div><button class="close-btn" data-close="settingsModal">×</button>
+      </div>
+      <form id="settingsForm">
+        <div class="form-grid two-col"><label><span data-i18n="yourName">اسمك</span><input id="settingsName" type="text"
+              maxlength="40"></label><label><span data-i18n="language">اللغة</span><select id="settingsLanguage">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select></label></div><label><span data-i18n="theme">المظهر</span><select id="settingsTheme">
+            <option value="dark" data-i18n="darkMode">الوضع الداكن</option>
+            <option value="light" data-i18n="lightMode">الوضع الفاتح</option>
+          </select></label>
+        <div class="danger-zone">
+          <div><b data-i18n="resetData">إعادة ضبط كل البيانات</b><small data-i18n="resetWarning">يمسح بيانات Montra
+              المحلية ويبدأ من جديد.</small></div><button type="button" class="danger-btn" id="resetDataBtn"
+            data-i18n="reset">إعادة ضبط</button>
+        </div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="settingsModal"
+            data-i18n="cancel">إلغاء</button><button type="submit" class="primary-btn" data-i18n="saveChanges">حفظ
+            التغييرات</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+
+</html>
